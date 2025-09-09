@@ -27,4 +27,5 @@ model todo {
   title String
   description String
   completed Boolean @default(false)
+  userId Int
 }

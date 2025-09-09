@@ -1,1 +1,3 @@
-console.log("hello there")
+import { PrismaClient } from "@prisma/client"
+
+const client = new PrismaClient()
