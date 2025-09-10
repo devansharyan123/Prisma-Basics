@@ -1,17 +1,21 @@
-import { PrismaClient } from "./generated/prisma/index.js"
+import { PrismaClient } from '@prisma/client'
 
-const client = new PrismaClient()
+const prisma = new PrismaClient()
 
-
-async function check()
-{
-  await client.user.create({
-    data: {
-        username : "Devansh Aryan",
-        password : "12345",
-        age : 22
-    }
-})
+async function getUserWithTodos() {
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        id: 1
+      },
+      include: {
+        todos: true // Now this should work
+      }
+    })
+    console.log(user)
+    return user
+  } catch (error) {
+    console.error('Error fetching user:', error)
+    throw error
+  }
 }
-
-check();
